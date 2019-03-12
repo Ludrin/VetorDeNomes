@@ -37,15 +37,13 @@ public class VocabularyUtils {
     }
 
     /**
-     * Creates a Set<String> composed of unique words from two String[]s.
+     * Creates a Set<String> composed of unique words from n String[]s.
      *
-     * @param wordsFirstSentence  the first list of words to be transformed into a vocabulary
-     * @param wordsSecondSentence the second list of words to be transformed into a vocabulary
+     * @param sentenceWords a n amount of String arrays to be combined
      * @return a Set<String> of unique words from the combined arrays received as parameters
      */
-    public static Set<String> createVocabulary(String[] wordsFirstSentence, String[] wordsSecondSentence) {
-        String[] nonUniqueVocabulary = Stream.concat(Arrays.stream(wordsFirstSentence), Arrays.stream(wordsSecondSentence))
-                .toArray(String[]::new);
+    public static Set<String> createVocabulary(String[]... sentenceWords) {
+        String[] nonUniqueVocabulary = mergeArrays(sentenceWords);
         System.out.println("Non unique vocabulary: " + Arrays.toString(nonUniqueVocabulary));
 
         Set<String> uniqueVocabulary = new HashSet<>();
@@ -53,6 +51,12 @@ public class VocabularyUtils {
         System.out.println("Unique vocabulary: " + uniqueVocabulary.toString());
 
         return uniqueVocabulary;
+    }
+
+    private static String[] mergeArrays(String[]... arrays) {
+        return Stream.of(arrays)
+                .flatMap(Stream::of)
+                .toArray(String[]::new);
     }
 
     /**

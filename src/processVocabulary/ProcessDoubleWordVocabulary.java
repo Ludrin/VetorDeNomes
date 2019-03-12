@@ -3,6 +3,7 @@ package processVocabulary;
 import java.util.Arrays;
 import java.util.Set;
 
+import utils.FileConstants;
 import utils.FileUtils;
 import utils.VocabularyUtils;
 
@@ -15,12 +16,9 @@ import utils.VocabularyUtils;
  */
 public class ProcessDoubleWordVocabulary {
 
-    private static final String FIRST_FILE = "firstFile.txt";
-    private static final String SECOND_FILE = "secondFile.txt";
-
     public static void main(String[] args) {
-        String firstSentence = FileUtils.getFileContentAsSingleString(FIRST_FILE);
-        String secondSentence = FileUtils.getFileContentAsSingleString(SECOND_FILE);
+        String firstSentence = FileUtils.getFileContentAsSingleString(FileConstants.FIRST_FILE);
+        String secondSentence = FileUtils.getFileContentAsSingleString(FileConstants.SECOND_FILE);
 
         String[] wordsFirstSentence = VocabularyUtils.createDoubleWordArray(firstSentence);
         String[] wordsSecondSentence = VocabularyUtils.createDoubleWordArray(secondSentence);

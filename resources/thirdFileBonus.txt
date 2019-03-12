@@ -1,0 +1,1 @@
+Escrever código que funcione é difícil. Escrever código que seja fácil de entender é mais ainda.
