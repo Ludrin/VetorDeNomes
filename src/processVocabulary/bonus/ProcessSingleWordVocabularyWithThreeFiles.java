@@ -26,18 +26,19 @@ public class ProcessSingleWordVocabularyWithThreeFiles {
         String[] wordsThirdSentence = VocabularyUtils.createSingleWordArray(thirdSentence);
 
         Set<String> vocabulary = VocabularyUtils.createVocabulary(wordsFirstSentence, wordsSecondSentence, wordsThirdSentence);
+        System.out.println("Vocabulary: " + vocabulary);
 
         int[] wordOccurrenceVectorFirstSentence = new int[vocabulary.size()];
         VocabularyUtils.countWordsInVocabulary(wordsFirstSentence, vocabulary, wordOccurrenceVectorFirstSentence);
-        System.out.println(Arrays.toString(wordOccurrenceVectorFirstSentence));
+        System.out.println("First file word array: " + Arrays.toString(wordOccurrenceVectorFirstSentence));
 
         int[] wordOccurrenceVectorSecondSentence = new int[vocabulary.size()];
         VocabularyUtils.countWordsInVocabulary(wordsSecondSentence, vocabulary, wordOccurrenceVectorSecondSentence);
-        System.out.println(Arrays.toString(wordOccurrenceVectorSecondSentence));
+        System.out.println("Second file word array: " + Arrays.toString(wordOccurrenceVectorSecondSentence));
 
         int[] wordOccurrenceVectorThirdSentence = new int[vocabulary.size()];
         VocabularyUtils.countWordsInVocabulary(wordsThirdSentence, vocabulary, wordOccurrenceVectorThirdSentence);
-        System.out.println(Arrays.toString(wordOccurrenceVectorThirdSentence));
+        System.out.println("Third file word array: " + Arrays.toString(wordOccurrenceVectorThirdSentence));
     }
 
 }

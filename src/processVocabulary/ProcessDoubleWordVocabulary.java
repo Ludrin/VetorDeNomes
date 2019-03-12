@@ -24,14 +24,15 @@ public class ProcessDoubleWordVocabulary {
         String[] wordsSecondSentence = VocabularyUtils.createDoubleWordArray(secondSentence);
 
         Set<String> vocabulary = VocabularyUtils.createVocabulary(wordsFirstSentence, wordsSecondSentence);
+        System.out.println("Vocabulary: " + vocabulary);
 
-        int[] wordVectorFirstSentence = new int[vocabulary.size()];
-        VocabularyUtils.countWordsInVocabulary(wordsFirstSentence, vocabulary, wordVectorFirstSentence);
-        System.out.println(Arrays.toString(wordVectorFirstSentence));
+        int[] wordOccurrenceVectorFirstSentence = new int[vocabulary.size()];
+        VocabularyUtils.countWordsInVocabulary(wordsFirstSentence, vocabulary, wordOccurrenceVectorFirstSentence);
+        System.out.println("First file word array: " + Arrays.toString(wordOccurrenceVectorFirstSentence));
 
-        int[] wordVectorSecondSentence = new int[vocabulary.size()];
-        VocabularyUtils.countWordsInVocabulary(wordsSecondSentence, vocabulary, wordVectorSecondSentence);
-        System.out.println(Arrays.toString(wordVectorSecondSentence));
+        int[] wordOccurrenceVectorSecondSentence = new int[vocabulary.size()];
+        VocabularyUtils.countWordsInVocabulary(wordsSecondSentence, vocabulary, wordOccurrenceVectorSecondSentence);
+        System.out.println("Second file word array:" + Arrays.toString(wordOccurrenceVectorSecondSentence));
     }
 
 }

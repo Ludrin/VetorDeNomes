@@ -28,3 +28,16 @@ O pacote bonus contêm a criação de vocabulários sequenciais únicas e duplas usan
 ### Explicação do código
 
 Segue uma explicação geral de como o código funciona. Os Javadocs podem ser consultados para mais detalhes técnicos.
+
+1. Os arquivos com as frases desejadas são carregados utilizando os métodos da classe _FileUtils_. Alguns arquivos de teste estão na pasta _resources_.
+2. O conteúdo do arquivo recebe os seguintes tratamentos:
+    1. Removido de espaços em excesso
+    2. Removido de marcação, como pontos de interrogação, pontos finais, vírgulas...
+    3. Todas as letras são convertidas para upper case
+    4. As palavras são separadas ou sozinhas ou em dupla, dependendo de qual método for chamado. _createSingleWordArray_ separa as palavras sozinhas e _createDoubleWordArray_ em dupla
+3. Uma quantidade n de vetores de palavras são passadas para o método _createVocabulary_. Os vetores são unidos e transferidos para um Set<String>, o que elimina automaticamente as palavras repetidas.
+    1. Opcionalmente é possível remover palavras indesejadas (stop words) do vocabulário. O método _removeStopWords_ recebe o vocabulário e as stop words como Set<String> e realiza esse tratamento
+    2. Um dos arquivos da pasta _resources_ contêm uma stop word em cada linha. Plavras podem ser adicionadas e removidas livremente. Um dos métodos da classe _FileUtils_, _getFileContentAsStringSet_, lê cada linha e salva em um elemento do Set<String>
+    3. Esse tratamento foi feito na classe _ProcessSingleWordVocabulary_ para demonstração
+4. Um vetor de números inteiros é criado para cada arquivo lido cujo tamanho é igual ao tamanho do vocabulário.
+5. O método _countWordsInVocabulary_ é chamado para cada vetor de números inteiros. O vocabulário é percorrido para cada palavra de cada arquivo e, caso haja ocorrência, é adicionado 1 no índex do vetor de inteiros correspondente.

@@ -43,20 +43,14 @@ public class VocabularyUtils {
      * @return a Set<String> of unique words from the combined arrays received as parameters
      */
     public static Set<String> createVocabulary(String[]... sentenceWords) {
-        String[] nonUniqueVocabulary = mergeArrays(sentenceWords);
-        System.out.println("Non unique vocabulary: " + Arrays.toString(nonUniqueVocabulary));
+        String[] nonUniqueVocabulary = Stream.of(sentenceWords)
+                .flatMap(Stream::of)
+                .toArray(String[]::new);
 
         Set<String> uniqueVocabulary = new HashSet<>();
         uniqueVocabulary = Arrays.stream(nonUniqueVocabulary).collect(Collectors.toSet());
-        System.out.println("Unique vocabulary: " + uniqueVocabulary.toString());
 
         return uniqueVocabulary;
-    }
-
-    private static String[] mergeArrays(String[]... arrays) {
-        return Stream.of(arrays)
-                .flatMap(Stream::of)
-                .toArray(String[]::new);
     }
 
     /**
@@ -77,6 +71,16 @@ public class VocabularyUtils {
     }
 
     /**
+     * Removes all stopWords from a given vocabulary.
+     *
+     * @param vocabulary a Set<String> in which each element is a word of the vocabulary
+     * @param stopWords  a set<String> in which each element is a word to be removed
+     */
+    public static void removeStopWords(Set<String> vocabulary, Set<String> stopWords) {
+        vocabulary.removeAll(stopWords);
+    }
+
+    /**
      * Creates a String[] of words in sequence by editing a given sentence.
      * The sentence is trimmed to eliminate trailing whitespaces, removed of punctuation and split according to a given pattern.
      *
@@ -90,7 +94,6 @@ public class VocabularyUtils {
         sentence = sentence.toUpperCase();
         String[] wordsFromSentence = sentence.split(splitPattern);
 
-        System.out.println("Array of separated words: " + Arrays.toString(wordsFromSentence));
         return wordsFromSentence;
     }
 
